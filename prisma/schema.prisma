@@ -1,0 +1,24 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model game {
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  title     String?
+  developer String?
+  publisher String?
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model player {
+  id      String   @id @default(auto()) @map("_id") @db.ObjectId
+  name    String?
+  team    String?
+  allstar Boolean?
+}
